@@ -3,32 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="위루비 - 의료 AI 및 스마트 병원 솔루션">
+    <meta name="description" content="위루비(WeRuby) - AI 기반 의료 솔루션 및 스마트 병원 플랫폼. Medical AI, HIS/AIP 통합 시스템, Healthcare NFT 서비스를 제공합니다.">
+    <meta name="keywords" content="의료 AI, 스마트 병원, Medical AI, HIS, EMR, 원격진료, 블록체인, Healthcare NFT, 위루비, WeRuby">
+    <meta name="author" content="WeRuby Co., Ltd.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://weruby.co.kr/">
+    <meta property="og:title" content="WeRuby | 미래의 스마트 병원을 만듭니다">
+    <meta property="og:description" content="의료 지원의 미래를 AI와 블록체인으로 앞당기는 WeRuby의 혁신적인 의료 솔루션">
+    <meta property="og:image" content="https://weruby.co.kr/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://weruby.co.kr/">
+    <meta property="twitter:title" content="WeRuby | 미래의 스마트 병원을 만듭니다">
+    <meta property="twitter:description" content="의료 지원의 미래를 AI와 블록체인으로 앞당기는 WeRuby의 혁신적인 의료 솔루션">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <title>WeRuby | 미래의 스마트 병원을 만듭니다</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "WeRuby",
+        "url": "https://weruby.co.kr",
+        "logo": "https://weruby.co.kr/logo.png",
+        "description": "AI 기반 의료 솔루션 및 스마트 병원 플랫폼 제공",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "서초구",
+            "addressRegion": "서울특별시",
+            "addressCountry": "KR"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "career@weruby.co.kr",
+            "contactType": "customer service"
+        }
+    }
+    </script>
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#home" class="skip-link">본문으로 건너뛰기</a>
+    
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation" aria-label="주 메뉴">
         <div class="nav-container">
             <div class="logo">
-                <span class="logo-text">WeRuby</span>
+                <a href="#home" class="logo-link" aria-label="WeRuby 홈으로 이동">
+                    <span class="logo-text">WeRuby</span>
+                </a>
             </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#vision" class="nav-link">Vision</a></li>
-                <li><a href="#solutions" class="nav-link">Solutions</a></li>
-                <li><a href="#technology" class="nav-link">Technology</a></li>
-                <li><a href="#alliance" class="nav-link">Alliance</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#vision" class="nav-link" role="menuitem">Vision</a></li>
+                <li role="none"><a href="#solutions" class="nav-link" role="menuitem">Solutions</a></li>
+                <li role="none"><a href="#technology" class="nav-link" role="menuitem">Technology</a></li>
+                <li role="none"><a href="#alliance" class="nav-link" role="menuitem">Alliance</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="다크모드 토글" title="다크모드 전환">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -278,20 +331,31 @@
                 </div>
                 
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="이름" required>
+                            <label for="name" class="sr-only">이름</label>
+                            <input type="text" id="name" name="name" placeholder="이름" required aria-required="true" aria-invalid="false">
+                            <span class="error-message" id="nameError" role="alert"></span>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" placeholder="이메일" required>
+                            <label for="email" class="sr-only">이메일</label>
+                            <input type="email" id="email" name="email" placeholder="이메일" required aria-required="true" aria-invalid="false">
+                            <span class="error-message" id="emailError" role="alert"></span>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="company" placeholder="회사명">
+                            <label for="company" class="sr-only">회사명</label>
+                            <input type="text" id="company" name="company" placeholder="회사명 (선택사항)">
                         </div>
                         <div class="form-group">
-                            <textarea id="message" rows="5" placeholder="문의내용" required></textarea>
+                            <label for="message" class="sr-only">문의내용</label>
+                            <textarea id="message" name="message" rows="5" placeholder="문의내용" required aria-required="true" aria-invalid="false"></textarea>
+                            <span class="error-message" id="messageError" role="alert"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">메시지 보내기</button>
+                        <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                            <span class="btn-text">메시지 보내기</span>
+                            <span class="btn-loader" aria-hidden="true"></span>
+                        </button>
                     </form>
                 </div>
             </div>
