@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WeRuby AI 솔루션 - AI 기반 통합 의료 플랫폼의 9단계 서비스와 주요 솔루션을 소개합니다.">
+    <meta name="keywords" content="의료 AI, 스마트 병원, Medical AI, HIS, EMR, 원격진료, 블록체인, Healthcare NFT, 위루비, WeRuby">
+    <meta name="author" content="WeRuby Co., Ltd.">
+    
+    <title>Solutions | WeRuby - AI 기반 통합 의료 솔루션</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .solutions-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #2563eb 100%);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solutions-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .solutions-hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .solutions-hero-text {
+            text-align: left;
+        }
+        
+        .solutions-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .solutions-hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            opacity: 0.95;
+        }
+        
+        .solutions-hero-illustration {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .solutions-hero-illustration svg {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+        }
+        
+        .service-flow {
+            padding: 6rem 0;
+            background: var(--light-color);
+        }
+        
+        .flow-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .flow-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .flow-steps {
+            display: grid;
+            gap: 2rem;
+            position: relative;
+        }
+        
+        .flow-step {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            position: relative;
+            border-left: 4px solid var(--primary-color);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        .flow-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .flow-step-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .flow-step-icon svg {
+            width: 60px;
+            height: 60px;
+            color: var(--white);
+        }
+        
+        .flow-step-content {
+            flex: 1;
+        }
+        
+        .flow-step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .flow-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .flow-step p {
+            color: var(--gray-color);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .flow-step-features {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .flow-step-features li {
+            background: var(--light-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .flow-connector {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .flow-connector {
+                display: block;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 2px;
+                height: 40px;
+                background: var(--gradient-2);
+                z-index: 0;
+            }
+        }
+        
+        .solution-details {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        
+        .solution-detail-card {
+            background: var(--light-color);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+            pointer-events: none;
+        }
+        
+        .solution-detail-card:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-5px);
+        }
+        
+        .solution-detail-illustration {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .solution-detail-illustration svg {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+        }
+        
+        .solution-detail-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .solution-detail-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .solution-detail-icon svg {
+            width: 48px;
+            height: 48px;
+            color: var(--white);
+        }
+        
+        .solution-detail-content h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .solution-detail-content p {
+            color: var(--gray-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .solution-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .solution-feature-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .solution-feature-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .solution-feature-item p {
+            font-size: 0.95rem;
+            color: var(--gray-color);
+            line-height: 1.6;
+        }
+        
+        .stats-section {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-box {
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .stat-box-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-box-icon svg {
+            width: 48px;
+            height: 48px;
+            color: var(--white);
+        }
+        
+        .stat-box-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 968px) {
+            .solutions-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .solutions-hero-text {
+                text-align: center;
+            }
+            
+            .flow-step {
+                grid-template-columns: 1fr;
+            }
+            
+            .flow-step-icon {
+                margin: 0 auto 1rem;
+            }
+        }
+        
+        .back-to-home {
+            text-align: center;
+            padding: 3rem 0;
+            background: var(--light-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="주 메뉴">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" class="logo-link" aria-label="WeRuby 홈으로 이동">
+                    <span class="logo-text">WeRuby</span>
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="index.html#vision" class="nav-link" role="menuitem">Vision</a></li>
+                <li role="none"><a href="solutions.html" class="nav-link active" role="menuitem">Solutions</a></li>
+                <li role="none"><a href="index.html#technology" class="nav-link" role="menuitem">Technology</a></li>
+                <li role="none"><a href="index.html#alliance" class="nav-link" role="menuitem">Alliance</a></li>
+                <li role="none"><a href="index.html#contact" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="다크모드 토글" title="다크모드 전환">
+                    <span class="theme-icon">🌙</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="메뉴 열기" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Solutions Hero -->
+    <section class="solutions-hero">
+        <div class="container">
+            <div class="solutions-hero-content">
+                <div class="solutions-hero-text">
+                    <h1>WeRuby AI 솔루션</h1>
+                    <p>AI 기술을 활용한 차세대 의료 통합 플랫폼으로, 예약부터 보험 청구까지 모든 의료 서비스를 하나의 플랫폼에서 완결합니다.</p>
+                </div>
+                <div class="solutions-hero-illustration">
+                    <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 배경 원형 -->
+                        <circle cx="250" cy="200" r="150" fill="rgba(255, 255, 255, 0.1)"/>
+                        <!-- 병원 건물 -->
+                        <rect x="150" y="120" width="200" height="140" rx="8" fill="rgba(255, 255, 255, 0.9)"/>
+                        <polygon points="120,120 250,60 380,120" fill="rgba(255, 255, 255, 0.95)"/>
+                        <!-- 창문들 -->
+                        <rect x="170" y="140" width="35" height="35" rx="3" fill="#2563eb"/>
+                        <rect x="220" y="140" width="35" height="35" rx="3" fill="#2563eb"/>
+                        <rect x="270" y="140" width="35" height="35" rx="3" fill="#10b981"/>
+                        <rect x="320" y="140" width="35" height="35" rx="3" fill="#10b981"/>
+                        <rect x="170" y="190" width="35" height="35" rx="3" fill="#2563eb"/>
+                        <rect x="220" y="190" width="35" height="35" rx="3" fill="#2563eb"/>
+                        <rect x="270" y="190" width="35" height="35" rx="3" fill="#10b981"/>
+                        <rect x="320" y="190" width="35" height="35" rx="3" fill="#10b981"/>
+                        <!-- 문 -->
+                        <rect x="230" y="220" width="40" height="40" rx="3" fill="#667eea"/>
+                        <!-- 십자가 -->
+                        <rect x="245" y="70" width="10" height="40" rx="2" fill="#ef4444"/>
+                        <rect x="220" y="85" width="60" height="10" rx="2" fill="#ef4444"/>
+                        <!-- AI 파티클 -->
+                        <circle cx="100" cy="80" r="6" fill="#10b981" opacity="0.8">
+                            <animate attributeName="cy" values="80;60;80" dur="3s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="400" cy="100" r="5" fill="#2563eb" opacity="0.8">
+                            <animate attributeName="cy" values="100;80;100" dur="2.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="80" cy="300" r="6" fill="#667eea" opacity="0.8">
+                            <animate attributeName="cy" values="300;280;300" dur="3.5s" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="420" cy="320" r="7" fill="#10b981" opacity="0.8">
+                            <animate attributeName="cy" values="320;300;320" dur="2.8s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- 연결선 -->
+                        <line x1="100" y1="80" x2="170" y2="140" stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" stroke-dasharray="5,5">
+                            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite"/>
+                        </line>
+                        <line x1="400" y1="100" x2="330" y2="140" stroke="rgba(255, 255, 255, 0.3)" stroke-width="2" stroke-dasharray="5,5">
+                            <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2.5s" repeatCount="indefinite"/>
+                        </line>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Flow Section -->
+    <section class="service-flow">
+        <div class="flow-container">
+            <div class="flow-header">
+                <span class="section-label">Service Flow</span>
+                <h2 class="section-title">9단계 통합 의료 서비스</h2>
+                <p class="section-description">
+                    일정 기반 자동화 시스템을 통해 병원 예약부터 진료, 처방전 관리, 보험 청구까지<br>
+                    모든 의료 서비스를 하나의 플랫폼에서 완결할 수 있습니다
+                </p>
+            </div>
+            
+            <div class="flow-steps">
+                <!-- Step 1 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 채팅 버블 -->
+                            <path d="M20 20C20 16 24 12 30 12C36 12 40 16 40 20C40 24 36 28 30 28C28 28 26 27 25 26L20 30L25 26C24 25 20 23 20 20Z" fill="currentColor" opacity="0.9"/>
+                            <path d="M44 32C44 28 48 24 54 24C60 24 64 28 64 32C64 36 60 40 54 40C52 40 50 39 49 38L44 42L49 38C48 37 44 35 44 32Z" fill="currentColor" opacity="0.7"/>
+                            <!-- 음성 파형 -->
+                            <rect x="12" y="40" width="3" height="8" rx="1" fill="currentColor"/>
+                            <rect x="18" y="38" width="3" height="12" rx="1" fill="currentColor"/>
+                            <rect x="24" y="36" width="3" height="16" rx="1" fill="currentColor"/>
+                            <rect x="30" y="38" width="3" height="12" rx="1" fill="currentColor"/>
+                            <rect x="36" y="40" width="3" height="8" rx="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">01</div>
+                        <h3>사용자 요청</h3>
+                        <p>AI 채팅/음성 인터페이스를 통해 자연어로 의료 서비스를 요청합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>AI 채팅/음성 인터페이스</li>
+                            <li>자연어 기반 대화</li>
+                            <li>빠른 액션 버튼</li>
+                            <li>24/7 가용성</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- AI 뇌 -->
+                            <path d="M32 16C28 16 24 18 22 22C20 20 17 19 14 19C10 19 6 21 4 25C2 27 1 30 1 33C1 36 2 39 4 41C3 43 3 45 4 47C5 49 7 50 9 50C11 52 14 53 17 53C20 53 23 52 25 50C27 52 30 53 33 53C36 53 39 52 41 50C43 52 46 53 49 53C52 53 55 52 57 50C59 52 61 53 63 53" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <!-- 데이터 차트 -->
+                            <rect x="8" y="40" width="6" height="12" fill="currentColor" opacity="0.6"/>
+                            <rect x="18" y="36" width="6" height="16" fill="currentColor" opacity="0.7"/>
+                            <rect x="28" y="32" width="6" height="20" fill="currentColor" opacity="0.8"/>
+                            <rect x="38" y="38" width="6" height="14" fill="currentColor" opacity="0.7"/>
+                            <rect x="48" y="42" width="6" height="10" fill="currentColor" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">02</div>
+                        <h3>AI 분석 및 이해</h3>
+                        <p>증상 분석, 사용자 일정 분석, 선호도 및 이력 기반 추천을 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>증상 분석 및 진료과목 매칭</li>
+                            <li>사용자 일정 분석</li>
+                            <li>선호도 및 이력 기반 추천</li>
+                            <li>맥락 이해 (Context-aware)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 타겟/추천 -->
+                            <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="32" cy="32" r="12" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle cx="32" cy="32" r="4" fill="currentColor"/>
+                            <!-- 별점 -->
+                            <path d="M16 20L18 26L24 26L19 30L21 36L16 32L11 36L13 30L8 26L14 26Z" fill="currentColor" opacity="0.8"/>
+                            <path d="M50 20L52 26L58 26L53 30L55 36L50 32L45 36L47 30L42 26L48 26Z" fill="currentColor" opacity="0.8"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">03</div>
+                        <h3>맞춤형 추천</h3>
+                        <p>병원 및 의사 추천, 최적 예약 시간 제안, 예상 대기시간 안내를 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>병원 및 의사 추천 (평점/거리/전문성)</li>
+                            <li>최적 예약 시간 제안</li>
+                            <li>예상 대기시간 안내</li>
+                            <li>다중 옵션 제공</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 캘린더 -->
+                            <rect x="12" y="16" width="40" height="36" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="12" y1="24" x2="52" y2="24" stroke="currentColor" stroke-width="2"/>
+                            <rect x="18" y="8" width="8" height="12" rx="2" fill="currentColor" opacity="0.3"/>
+                            <rect x="38" y="8" width="8" height="12" rx="2" fill="currentColor" opacity="0.3"/>
+                            <!-- 날짜 -->
+                            <circle cx="20" cy="34" r="4" fill="currentColor" opacity="0.6"/>
+                            <circle cx="32" cy="34" r="4" fill="currentColor"/>
+                            <circle cx="44" cy="34" r="4" fill="currentColor" opacity="0.6"/>
+                            <!-- 체크마크 -->
+                            <path d="M28 42L30 44L36 38" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">04</div>
+                        <h3>자동 예약 및 일정 등록</h3>
+                        <p>원클릭 예약 확정, 캘린더 자동 등록, 예약 확인 알림을 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>원클릭 예약 확정</li>
+                            <li>캘린더 자동 등록</li>
+                            <li>예약 확인 알림</li>
+                            <li>리마인더 설정</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 문서/문진표 -->
+                            <rect x="16" y="12" width="32" height="40" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="22" y1="20" x2="42" y2="20" stroke="currentColor" stroke-width="2"/>
+                            <line x1="22" y1="28" x2="38" y2="28" stroke="currentColor" stroke-width="2"/>
+                            <line x1="22" y1="36" x2="42" y2="36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="22" y1="44" x2="36" y2="44" stroke="currentColor" stroke-width="2"/>
+                            <!-- 체크박스 -->
+                            <rect x="22" y="20" width="8" height="8" rx="1" fill="currentColor" opacity="0.3"/>
+                            <path d="M24 24L26 26L30 22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">05</div>
+                        <h3>진료 전 준비</h3>
+                        <p>문진표 자동 작성, 이전 진료 기록 전송, 필요 서류 안내를 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>문진표 자동 작성</li>
+                            <li>이전 진료 기록 전송</li>
+                            <li>필요 서류 안내</li>
+                            <li>위치 및 주차 정보</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 6 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 병원/진료 -->
+                            <rect x="20" y="20" width="24" height="20" rx="2" fill="currentColor" opacity="0.9"/>
+                            <polygon points="16,20 32,12 48,20" fill="currentColor" opacity="0.95"/>
+                            <!-- 의료 십자가 -->
+                            <rect x="30" y="24" width="4" height="12" rx="1" fill="#ef4444"/>
+                            <rect x="24" y="28" width="16" height="4" rx="1" fill="#ef4444"/>
+                            <!-- 대기 번호 -->
+                            <circle cx="48" cy="16" r="8" fill="currentColor" opacity="0.8"/>
+                            <text x="48" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">3</text>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">06</div>
+                        <h3>진료 진행</h3>
+                        <p>실시간 상태 업데이트, 대기 순번 알림, 진료 내용 실시간 기록을 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>실시간 상태 업데이트</li>
+                            <li>대기 순번 알림</li>
+                            <li>진료 내용 실시간 기록</li>
+                            <li>의사-환자 커뮤니케이션</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 7 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 처방전/약 -->
+                            <rect x="16" y="16" width="32" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="22" y1="24" x2="42" y2="24" stroke="currentColor" stroke-width="2"/>
+                            <line x1="22" y1="32" x2="38" y2="32" stroke="currentColor" stroke-width="2"/>
+                            <!-- 약 알약 -->
+                            <circle cx="24" cy="42" r="4" fill="currentColor" opacity="0.8"/>
+                            <circle cx="40" cy="42" r="4" fill="currentColor" opacity="0.8"/>
+                            <!-- 클라우드 저장 -->
+                            <path d="M48 28C48 24 52 20 56 20C60 20 64 24 64 28C64 32 60 36 56 36" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">07</div>
+                        <h3>진료 후 처리</h3>
+                        <p>진단서 자동 저장, 처방전 디지털화, 복약 일정 관리, 후속 진료 일정 제안을 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>진단서 자동 저장</li>
+                            <li>처방전 디지털화</li>
+                            <li>복약 일정 관리</li>
+                            <li>후속 진료 일정 제안</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 8 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 보험 카드/영수증 -->
+                            <rect x="12" y="20" width="40" height="28" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="18" y1="28" x2="46" y2="28" stroke="currentColor" stroke-width="2"/>
+                            <line x1="18" y1="36" x2="40" y2="36" stroke="currentColor" stroke-width="2"/>
+                            <!-- 화살표/자동화 -->
+                            <path d="M20 48L28 40L36 48" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            <line x1="28" y1="40" x2="28" y2="20" stroke="currentColor" stroke-width="2" stroke-dasharray="3,3"/>
+                            <!-- 체크마크 -->
+                            <circle cx="50" cy="50" r="8" fill="currentColor" opacity="0.8"/>
+                            <path d="M46 50L49 53L54 48" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">08</div>
+                        <h3>보험 자동 처리</h3>
+                        <p>진료비 영수증 자동 수집, 보험사 자동 청구, 실시간 진행상황 추적, 환급금 자동 입금을 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>진료비 영수증 자동 수집</li>
+                            <li>보험사 자동 청구</li>
+                            <li>실시간 진행상황 추적</li>
+                            <li>환급금 자동 입금</li>
+                            <li>평균 처리 시간: 3-5일 (기존 2-3주 대비 85% 단축)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 9 -->
+                <div class="flow-step">
+                    <div class="flow-step-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- 하트/건강 -->
+                            <path d="M32 20C28 20 24 24 24 28C24 36 32 44 32 44C32 44 40 36 40 28C40 24 36 20 32 20Z" fill="currentColor" opacity="0.8"/>
+                            <!-- 차트/그래프 -->
+                            <rect x="12" y="48" width="6" height="8" fill="currentColor" opacity="0.6"/>
+                            <rect x="22" y="44" width="6" height="12" fill="currentColor" opacity="0.7"/>
+                            <rect x="32" y="40" width="6" height="16" fill="currentColor" opacity="0.8"/>
+                            <rect x="42" y="46" width="6" height="10" fill="currentColor" opacity="0.7"/>
+                            <rect x="52" y="50" width="6" height="6" fill="currentColor" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="flow-step-content">
+                        <div class="flow-step-number">09</div>
+                        <h3>건강상태 모니터링</h3>
+                        <p>의료 기록 기반 건강 분석, 종합 건강 점수, 주요 건강 지표 추적, 위험도 평가를 제공합니다.</p>
+                        <ul class="flow-step-features">
+                            <li>의료 기록 기반 건강 분석</li>
+                            <li>종합 건강 점수 (0-100점)</li>
+                            <li>주요 건강 지표 추적</li>
+                            <li>위험도 평가</li>
+                            <li>건강 목표 관리</li>
+                            <li>건강 추이 분석</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Details Section -->
+    <section class="solution-details">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Our Solutions</span>
+                <h2 class="section-title">주요 솔루션</h2>
+            </div>
+            
+            <!-- Medical AI -->
+            <div id="medical-ai" class="solution-detail-card">
+                <div class="solution-detail-header">
+                    <div class="solution-detail-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 16C28 16 24 18 22 22C20 20 17 19 14 19C10 19 6 21 4 25C2 27 1 30 1 33C1 36 2 39 4 41C3 43 3 45 4 47C5 49 7 50 9 50C11 52 14 53 17 53C20 53 23 52 25 50C27 52 30 53 33 53C36 53 39 52 41 50C43 52 46 53 49 53C52 53 55 52 57 50C59 52 61 53 63 53" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <rect x="28" y="20" width="8" height="24" rx="2" fill="currentColor"/>
+                            <rect x="20" y="28" width="24" height="8" rx="2" fill="currentColor"/>
+                            <circle cx="12" cy="16" r="3" fill="currentColor" opacity="0.6"/>
+                            <circle cx="52" cy="16" r="3" fill="currentColor" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <div class="solution-detail-content">
+                        <h2>Medical AI</h2>
+                        <p>의료 전문가들의 진단을 지원하는 고도화된 인공지능 시스템으로 정확도와 효율성을 높입니다</p>
+                    </div>
+                </div>
+                <div class="solution-features-grid">
+                    <div class="solution-feature-item">
+                        <h4>영상 판독 AI</h4>
+                        <p>X-ray, CT, MRI 등 의료 영상을 AI로 분석하여 초기 진단을 지원합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>질병 예측 시스템</h4>
+                        <p>환자의 증상과 이력을 분석하여 질병 발생 가능성을 예측합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>진료 의사결정 지원</h4>
+                        <p>의료진이 최적의 진단과 치료 계획을 수립할 수 있도록 지원합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>AI 채팅 어시스턴트</h4>
+                        <p>24/7 자연어 기반 대화로 의료 서비스 요청을 처리합니다</p>
+                    </div>
+                </div>
+                <div class="solution-detail-illustration">
+                    <svg viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- AI 뇌와 의료 시스템 -->
+                        <circle cx="300" cy="150" r="120" fill="rgba(37, 99, 235, 0.1)"/>
+                        <!-- AI 뇌 -->
+                        <path d="M300 80C280 80 260 90 250 110C240 100 220 95 200 95C170 95 140 110 120 135C100 150 90 170 90 190C90 210 100 230 120 240C110 250 110 260 120 270C130 280 150 285 170 285C190 295 210 300 230 300C250 300 270 295 285 280C295 290 310 295 330 295C350 295 370 290 385 280C395 290 410 295 430 295C450 295 470 290 485 280C495 290 510 295 530 295" stroke="#2563eb" stroke-width="3" fill="none" stroke-linecap="round"/>
+                        <!-- 의료 십자가 -->
+                        <rect x="290" y="100" width="20" height="100" rx="3" fill="#ef4444"/>
+                        <rect x="250" y="140" width="100" height="20" rx="3" fill="#ef4444"/>
+                        <!-- 데이터 파티클 -->
+                        <circle cx="150" cy="80" r="8" fill="#10b981" opacity="0.8"/>
+                        <circle cx="450" cy="80" r="8" fill="#10b981" opacity="0.8"/>
+                        <circle cx="120" cy="220" r="8" fill="#2563eb" opacity="0.8"/>
+                        <circle cx="480" cy="220" r="8" fill="#2563eb" opacity="0.8"/>
+                        <!-- 연결선 -->
+                        <line x1="150" y1="80" x2="250" y2="120" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                        <line x1="450" y1="80" x2="350" y2="120" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- S/W Platform -->
+            <div id="sw-platform" class="solution-detail-card">
+                <div class="solution-detail-header">
+                    <div class="solution-detail-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="12" y="16" width="40" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <line x1="20" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="2"/>
+                            <line x1="20" y1="32" x2="44" y2="32" stroke="currentColor" stroke-width="2"/>
+                            <line x1="20" y1="40" x2="36" y2="40" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="32" cy="52" r="4" fill="currentColor"/>
+                            <line x1="32" y1="48" x2="32" y2="44" stroke="currentColor" stroke-width="2"/>
+                            <line x1="20" y1="52" x2="28" y2="52" stroke="currentColor" stroke-width="2"/>
+                            <line x1="36" y1="52" x2="44" y2="52" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="solution-detail-content">
+                        <h2>S/W Platform</h2>
+                        <p>HIS(병원정보시스템)와 AIP(애플리케이션 통합 플랫폼)를 연계한 통합 소프트웨어 솔루션</p>
+                    </div>
+                </div>
+                <div class="solution-features-grid">
+                    <div class="solution-feature-item">
+                        <h4>Total HIS 시스템</h4>
+                        <p>병원 운영에 필요한 모든 정보시스템을 통합 관리합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>EMR/OCS 통합</h4>
+                        <p>전자의무기록과 원무시스템을 완벽하게 연동합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>원격 진료 플랫폼</h4>
+                        <p>언제 어디서나 원격으로 진료를 받을 수 있는 플랫폼을 제공합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>3,000+ 제휴 병원</h4>
+                        <p>전국 주요 병원과의 네트워크를 구축하여 서비스를 제공합니다</p>
+                    </div>
+                </div>
+                <div class="solution-detail-illustration">
+                    <svg viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 플랫폼/서버 시스템 -->
+                        <rect x="100" y="80" width="400" height="140" rx="8" stroke="#2563eb" stroke-width="3" fill="rgba(37, 99, 235, 0.1)"/>
+                        <!-- 서버 레이어 -->
+                        <rect x="120" y="100" width="360" height="30" rx="4" fill="#2563eb" opacity="0.3"/>
+                        <rect x="120" y="140" width="360" height="30" rx="4" fill="#10b981" opacity="0.3"/>
+                        <rect x="120" y="180" width="280" height="30" rx="4" fill="#667eea" opacity="0.3"/>
+                        <!-- 네트워크 연결 -->
+                        <circle cx="300" cy="250" r="20" fill="#2563eb"/>
+                        <line x1="300" y1="230" x2="300" y2="220" stroke="#2563eb" stroke-width="3"/>
+                        <line x1="200" y1="250" x2="280" y2="250" stroke="#2563eb" stroke-width="3"/>
+                        <line x1="320" y1="250" x2="400" y2="250" stroke="#2563eb" stroke-width="3"/>
+                        <!-- 병원 아이콘들 -->
+                        <circle cx="150" cy="250" r="15" fill="#10b981" opacity="0.6"/>
+                        <circle cx="450" cy="250" r="15" fill="#10b981" opacity="0.6"/>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Healthcare & NFT -->
+            <div id="healthcare-nft" class="solution-detail-card">
+                <div class="solution-detail-header">
+                    <div class="solution-detail-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="16" y="20" width="16" height="16" rx="2" fill="currentColor" opacity="0.8"/>
+                            <rect x="32" y="20" width="16" height="16" rx="2" fill="currentColor" opacity="0.8"/>
+                            <rect x="24" y="36" width="16" height="16" rx="2" fill="currentColor" opacity="0.8"/>
+                            <line x1="32" y1="28" x2="32" y2="28" stroke="currentColor" stroke-width="2"/>
+                            <line x1="28" y1="36" x2="28" y2="36" stroke="currentColor" stroke-width="2"/>
+                            <line x1="36" y1="36" x2="36" y2="36" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="32" cy="12" r="6" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M28 12L30 14L36 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="solution-detail-content">
+                        <h2>Healthcare & NFT</h2>
+                        <p>웨어러블 디바이스 데이터를 NFT로 관리하여 개인 의료 데이터의 소유권과 보안을 강화합니다</p>
+                    </div>
+                </div>
+                <div class="solution-features-grid">
+                    <div class="solution-feature-item">
+                        <h4>의료 데이터 NFT화</h4>
+                        <p>개인의 의료 기록을 NFT로 변환하여 소유권을 보장합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>웨어러블 연동</h4>
+                        <p>스마트워치, 피트니스 트래커 등과 연동하여 실시간 건강 데이터를 수집합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>블록체인 기반 보안</h4>
+                        <p>블록체인 기술로 의료 데이터의 무결성과 보안을 보장합니다</p>
+                    </div>
+                    <div class="solution-feature-item">
+                        <h4>데이터 소유권</h4>
+                        <p>사용자가 자신의 의료 데이터에 대한 완전한 소유권을 가집니다</p>
+                    </div>
+                </div>
+                <div class="solution-detail-illustration">
+                    <svg viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- 블록체인 체인 -->
+                        <rect x="100" y="100" width="80" height="80" rx="8" fill="#2563eb" opacity="0.8"/>
+                        <rect x="220" y="100" width="80" height="80" rx="8" fill="#2563eb" opacity="0.8"/>
+                        <rect x="340" y="100" width="80" height="80" rx="8" fill="#2563eb" opacity="0.8"/>
+                        <rect x="460" y="100" width="80" height="80" rx="8" fill="#2563eb" opacity="0.8"/>
+                        <!-- 연결선 -->
+                        <line x1="180" y1="140" x2="220" y2="140" stroke="#2563eb" stroke-width="4"/>
+                        <line x1="300" y1="140" x2="340" y2="140" stroke="#2563eb" stroke-width="4"/>
+                        <line x1="420" y1="140" x2="460" y2="140" stroke="#2563eb" stroke-width="4"/>
+                        <!-- NFT 심볼 -->
+                        <circle cx="300" cy="50" r="30" stroke="#10b981" stroke-width="3" fill="none"/>
+                        <path d="M285 50L290 55L300 45L315 50" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- 웨어러블 디바이스 -->
+                        <rect x="250" y="200" width="100" height="60" rx="8" fill="#667eea" opacity="0.6"/>
+                        <circle cx="300" cy="230" r="15" fill="#10b981"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-box-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 12L40 20L32 28L24 20Z" fill="currentColor"/>
+                            <path d="M40 20L48 28L40 36L32 28Z" fill="currentColor"/>
+                            <path d="M24 20L32 28L24 36L16 28Z" fill="currentColor"/>
+                            <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="stat-box-number">9</div>
+                    <div class="stat-box-label">단계 통합 서비스</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="24" height="20" rx="2" fill="currentColor" opacity="0.9"/>
+                            <polygon points="16,20 32,12 48,20" fill="currentColor" opacity="0.95"/>
+                            <rect x="28" y="26" width="8" height="8" rx="1" fill="#ef4444"/>
+                        </svg>
+                    </div>
+                    <div class="stat-box-number">3,000+</div>
+                    <div class="stat-box-label">제휴 병원</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M20 32L28 40L44 24" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="stat-box-number">85%</div>
+                    <div class="stat-box-label">처리 시간 단축</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M32 12L32 32L44 40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="32" cy="32" r="3" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <div class="stat-box-number">24/7</div>
+                    <div class="stat-box-label">AI 서비스 운영</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Home -->
+    <section class="back-to-home">
+        <div class="container">
+            <a href="index.html" class="btn btn-primary btn-large">홈으로 돌아가기</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>WeRuby</h3>
+                    <p>미래의 스마트 병원을 만듭니다</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="index.html#vision">Vision</a></li>
+                            <li><a href="solutions.html">Solutions</a></li>
+                            <li><a href="index.html#technology">Technology</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:career@weruby.co.kr">career@weruby.co.kr</a></li>
+                            <li><a href="index.html#contact">문의하기</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WeRuby Co., Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -586,6 +586,12 @@ textarea:focus:not(:focus-visible) {
     gap: 2rem;
 }
 
+.solution-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
 .solution-card {
     background: var(--light-color);
     border-radius: 20px;
@@ -1199,6 +1205,10 @@ textarea:focus:not(:focus-visible) {
         top: auto;
         right: auto;
         margin: 0 auto 1rem;
+    }
+
+    .solution-card-link {
+        display: block;
     }
 
     .footer-content {
