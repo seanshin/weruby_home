@@ -557,8 +557,9 @@ textarea:focus:not(:focus-visible) {
 }
 
 .vision-icon svg {
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
+    color: var(--white);
 }
 
 .vision-card h3 {
@@ -595,6 +596,34 @@ textarea:focus:not(:focus-visible) {
     transition: var(--transition-base);
     border: 2px solid transparent;
     cursor: pointer;
+    position: relative;
+}
+
+.solution-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    opacity: 0.9;
+    transition: var(--transition-base);
+}
+
+.solution-card:hover .solution-icon {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.solution-icon svg {
+    width: 36px;
+    height: 36px;
+    color: var(--white);
 }
 
 .solution-card:hover {
@@ -718,6 +747,12 @@ textarea:focus:not(:focus-visible) {
     font-size: 5rem;
 }
 
+.tech-icon-svg {
+    width: 80px;
+    height: 80px;
+    color: var(--white);
+}
+
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -765,8 +800,26 @@ textarea:focus:not(:focus-visible) {
 }
 
 .alliance-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--gradient-2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    transition: var(--transition-base);
+}
+
+.alliance-card:hover .alliance-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.alliance-icon svg {
+    width: 40px;
+    height: 40px;
+    color: var(--white);
 }
 
 .alliance-card h3 {
@@ -840,8 +893,26 @@ textarea:focus:not(:focus-visible) {
 }
 
 .contact-icon {
-    font-size: 2rem;
+    width: 56px;
+    height: 56px;
     flex-shrink: 0;
+    background: var(--gradient-2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    transition: var(--transition-base);
+}
+
+.contact-item:hover .contact-icon {
+    transform: scale(1.1);
+}
+
+.contact-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--white);
 }
 
 .contact-item h4 {
@@ -1121,6 +1192,13 @@ textarea:focus:not(:focus-visible) {
     .solution-card {
         flex-direction: column;
         text-align: center;
+    }
+
+    .solution-icon {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin: 0 auto 1rem;
     }
 
     .footer-content {
