@@ -74,22 +74,68 @@ webapp/
 
 ## 🔧 사용 방법
 
-1. **로컬에서 실행**:
-   ```bash
-   # 파일을 다운로드하고 index.html을 브라우저로 열기
-   open index.html
-   ```
+### Localhost에서 실행하기
 
-2. **HTTP 서버로 실행**:
-   ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Node.js
-   npx http-server
-   ```
+#### 방법 1: 실행 스크립트 사용 (권장)
 
-3. 브라우저에서 `http://localhost:8000` 접속
+**macOS/Linux:**
+```bash
+chmod +x start.sh
+./start.sh
+```
+
+**Windows:**
+```cmd
+start.bat
+```
+
+#### 방법 2: npm 스크립트 사용
+
+```bash
+# Python 사용 (기본)
+npm start
+
+# Node.js http-server 사용
+npm run serve
+
+# 캐시 없이 개발 모드
+npm run dev
+```
+
+#### 방법 3: 직접 명령어 실행
+
+**Python 3:**
+```bash
+python3 -m http.server 8000
+# 또는
+python -m http.server 8000
+```
+
+**Node.js:**
+```bash
+npx http-server -p 8000 -o
+```
+
+#### 방법 4: 브라우저에서 직접 열기
+```bash
+# macOS
+open index.html
+
+# Windows
+start index.html
+
+# Linux
+xdg-open index.html
+```
+
+> ⚠️ **주의**: 브라우저에서 직접 파일을 열면 일부 기능(CORS, 모듈 등)이 제대로 작동하지 않을 수 있습니다. 가능하면 HTTP 서버를 사용하는 것을 권장합니다.
+
+### 서버 접속
+
+서버가 시작되면 브라우저에서 다음 주소로 접속하세요:
+- **http://localhost:8000**
+
+서버를 중지하려면 터미널에서 `Ctrl+C`를 누르세요.
 
 ## 🌐 배포 방법
 

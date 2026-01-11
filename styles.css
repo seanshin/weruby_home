@@ -287,11 +287,72 @@ body {
     background: rgba(0, 0, 0, 0.3);
 }
 
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    z-index: 1;
+}
+
 .hero-content {
-    text-align: center;
+    text-align: left;
     color: var(--white);
     z-index: 1;
-    padding: 0 20px;
+}
+
+.hero-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.medical-illustration {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+}
+
+.pulse-circle {
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.2;
+        transform: scale(1.05);
+    }
+}
+
+.hospital-building {
+    animation: float-building 6s ease-in-out infinite;
+}
+
+@keyframes float-building {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-1, .float-2, .float-3, .float-4 {
+    filter: drop-shadow(0 0 8px currentColor);
+}
+
+.heart-beat {
+    filter: drop-shadow(0 0 10px #ef4444);
 }
 
 .hero-title {
@@ -989,6 +1050,24 @@ textarea:focus:not(:focus-visible) {
    Responsive Design
    ======================================== */
 @media (max-width: 968px) {
+    .hero-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-illustration {
+        order: -1;
+    }
+
+    .medical-illustration {
+        max-width: 400px;
+    }
+
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1050,6 +1129,10 @@ textarea:focus:not(:focus-visible) {
 }
 
 @media (max-width: 640px) {
+    .hero-container {
+        gap: 2rem;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -1065,6 +1148,11 @@ textarea:focus:not(:focus-visible) {
     .btn {
         width: 100%;
     }
+
+    .medical-illustration {
+        max-width: 300px;
+    }
+}
 
     .vision-grid,
     .alliance-content {

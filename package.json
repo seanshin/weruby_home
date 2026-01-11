@@ -1,0 +1,24 @@
+{
+  "name": "weruby-home",
+  "version": "1.0.0",
+  "description": "WeRuby 홈페이지 - AI 기반 의료 솔루션 및 스마트 병원 플랫폼",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000 || python -m http.server 8000",
+    "serve": "npx http-server -p 8000 -o",
+    "dev": "npx http-server -p 8000 -o -c-1"
+  },
+  "keywords": [
+    "weruby",
+    "medical-ai",
+    "healthcare",
+    "hospital",
+    "website"
+  ],
+  "author": "WeRuby Co., Ltd.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seanshin/weruby_home.git"
+  }
+}
