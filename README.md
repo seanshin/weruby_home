@@ -91,6 +91,40 @@ webapp/
 
 3. 브라우저에서 `http://localhost:8000` 접속
 
+## 🌐 배포 방법
+
+### GitHub Pages로 배포
+1. GitHub 저장소의 Settings > Pages로 이동
+2. Source를 "Deploy from a branch" 선택
+3. Branch를 "main"과 "/ (root)" 선택
+4. Save 클릭
+5. 몇 분 후 `https://yourusername.github.io/weruby_home` 에서 확인
+
+### Cloudflare Pages로 배포
+1. [Cloudflare Pages](https://pages.cloudflare.com/)에 로그인
+2. "Create a project" 클릭
+3. GitHub 저장소 연결
+4. Build settings:
+   - Framework preset: None
+   - Build command: (비워두기)
+   - Build output directory: /
+5. "Save and Deploy" 클릭
+6. 배포 완료 후 제공된 URL로 접속
+
+### Vercel로 배포
+1. [Vercel](https://vercel.com/)에 로그인
+2. "New Project" 클릭
+3. GitHub 저장소 import
+4. 설정 그대로 "Deploy" 클릭
+5. 배포 완료 후 제공된 URL로 접속
+
+### Netlify로 배포
+1. [Netlify](https://www.netlify.com/)에 로그인
+2. "Add new site" > "Import an existing project"
+3. GitHub 저장소 연결
+4. Build settings 그대로 두고 "Deploy" 클릭
+5. 배포 완료 후 제공된 URL로 접속
+
 ## ✨ 주요 개선 사항
 
 ### 원본 대비 개선점
