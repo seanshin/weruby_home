@@ -982,8 +982,131 @@ document.addEventListener('DOMContentLoaded', () => {
     AccessibilityManager.initializeFocusManagement();
 });
 
+// ========================================
+// Hero 섹션 전용 애니메이션 관리
+// ========================================
+const HeroAnimationManager = {
+    /**
+     * Hero 섹션의 극적인 등장 애니메이션을 초기화합니다
+     */
+    initialize() {
+        // 텍스트 글자별 등장 효과
+        this.animateTextLetters();
+        
+        // 배경 파티클 효과 강화
+        this.enhanceBackgroundParticles();
+        
+        // 일러스트레이션 인터랙션
+        this.setupIllustrationInteraction();
+        
+        // 스크롤 기반 애니메이션
+        this.setupScrollBasedAnimation();
+    },
+
+    /**
+     * 제목 텍스트를 글자별로 등장시키는 효과
+     */
+    animateTextLetters() {
+        const heroTitle = document.querySelector('.hero-title');
+        if (!heroTitle) return;
+
+        const text = heroTitle.textContent;
+        const words = text.split('<br>');
+        
+        heroTitle.innerHTML = words.map((word, wordIndex) => {
+            return word.split('').map((char, charIndex) => {
+                if (char === ' ') return ' ';
+                const delay = (wordIndex * 0.1) + (charIndex * 0.05);
+                return `<span class="letter" style="display: inline-block; animation: letter-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s both;">${char}</span>`;
+            }).join('');
+        }).join('<br>');
+    },
+
+    /**
+     * 배경 파티클 효과를 강화합니다
+     */
+    enhanceBackgroundParticles() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+
+        // 추가 빛나는 파티클 생성
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'hero-star-particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: ${Math.random() * 4 + 2}px;
+                height: ${Math.random() * 4 + 2}px;
+                background: rgba(255, 255, 255, ${Math.random() * 0.8 + 0.2});
+                border-radius: 50%;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+                pointer-events: none;
+                z-index: 0;
+                animation: star-twinkle ${Math.random() * 3 + 2}s ease-in-out infinite;
+                animation-delay: ${Math.random() * 2}s;
+                box-shadow: 0 0 ${Math.random() * 10 + 5}px rgba(255, 255, 255, 0.8);
+            `;
+            heroSection.appendChild(particle);
+        }
+    },
+
+    /**
+     * 일러스트레이션 인터랙션을 설정합니다
+     */
+    setupIllustrationInteraction() {
+        const illustration = document.querySelector('.medical-illustration');
+        if (!illustration) return;
+
+        illustration.addEventListener('mousemove', (e) => {
+            const rect = illustration.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+            const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+            
+            illustration.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) translateZ(20px)`;
+        });
+
+        illustration.addEventListener('mouseleave', () => {
+            illustration.style.transform = '';
+        });
+    },
+
+    /**
+     * 스크롤 기반 애니메이션을 설정합니다
+     */
+    setupScrollBasedAnimation() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+
+        const handleScroll = UtilityFunctions.throttle(() => {
+            const scrollY = window.pageYOffset;
+            const heroHeight = heroSection.offsetHeight;
+            const scrollProgress = Math.min(scrollY / heroHeight, 1);
+
+            // 배경 그라디언트 변화
+            const heroBackground = document.querySelector('.hero-background');
+            if (heroBackground) {
+                const opacity = 1 - scrollProgress * 0.5;
+                heroBackground.style.opacity = opacity;
+            }
+
+            // 일러스트레이션 축소 효과
+            const illustration = document.querySelector('.medical-illustration');
+            if (illustration) {
+                const scale = 1 - scrollProgress * 0.3;
+                illustration.style.transform = `scale(${scale}) translateY(${scrollProgress * 50}px)`;
+            }
+        }, 16);
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+    }
+};
+
 // 페이지 로드 완료 시 능동형 효과 초기화
 window.addEventListener('load', () => {
+    // Hero 전용 애니메이션 초기화
+    HeroAnimationManager.initialize();
+    
     // 능동형 인터랙티브 효과 초기화
     InteractiveEffectsManager.initializeCursorGlow();
     InteractiveEffectsManager.initializeParticleBackground();
@@ -993,12 +1116,6 @@ window.addEventListener('load', () => {
     
     // 페이지 로드 완료 표시
     document.body.classList.add('loaded');
-    
-    // Hero 제목 애니메이션
-    const heroTitleElement = document.querySelector('.hero-title');
-    if (heroTitleElement) {
-        heroTitleElement.style.opacity = '1';
-    }
 });
 
 // ========================================

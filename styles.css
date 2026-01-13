@@ -462,20 +462,24 @@ body::before {
     bottom: 0;
     background: var(--gradient-hero);
     z-index: -1;
+    overflow: hidden;
 }
 
 .hero-background::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.5) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.5) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
-    animation: gradient-shift 15s ease infinite, gradient-move 20s ease-in-out infinite;
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.6) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.5) 0%, transparent 70%),
+        radial-gradient(circle at 10% 80%, rgba(139, 92, 246, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(16, 185, 129, 0.3) 0%, transparent 40%);
+    animation: gradient-shift 8s ease infinite, gradient-move 12s ease-in-out infinite, gradient-rotate 20s linear infinite;
+    filter: blur(40px);
 }
 
 .hero-background::after {
@@ -490,28 +494,77 @@ body::before {
             0deg,
             transparent,
             transparent 2px,
+            rgba(255, 255, 255, 0.05) 2px,
+            rgba(255, 255, 255, 0.05) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
             rgba(255, 255, 255, 0.03) 2px,
             rgba(255, 255, 255, 0.03) 4px
         );
-    animation: grid-move 30s linear infinite;
+    animation: grid-move 25s linear infinite, grid-rotate 40s linear infinite;
     pointer-events: none;
+    opacity: 0.6;
+}
+
+/* 추가 배경 레이어 - 빛나는 파티클 효과 */
+.hero-background {
+    position: relative;
+}
+
+.hero-background::before {
+    z-index: 0;
+}
+
+.hero-background::after {
+    z-index: 1;
 }
 
 @keyframes gradient-shift {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.9; transform: scale(1.05); }
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg); 
+        filter: blur(40px) brightness(1);
+    }
+    25% { 
+        opacity: 0.95; 
+        transform: scale(1.1) rotate(90deg); 
+        filter: blur(45px) brightness(1.2);
+    }
+    50% { 
+        opacity: 0.9; 
+        transform: scale(1.15) rotate(180deg); 
+        filter: blur(50px) brightness(1.1);
+    }
+    75% { 
+        opacity: 0.95; 
+        transform: scale(1.1) rotate(270deg); 
+        filter: blur(45px) brightness(1.2);
+    }
 }
 
 @keyframes gradient-move {
-    0%, 100% { transform: translate(0, 0); }
-    25% { transform: translate(20px, -20px); }
-    50% { transform: translate(-20px, 20px); }
-    75% { transform: translate(20px, 20px); }
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(30px, -30px) rotate(90deg); }
+    50% { transform: translate(-30px, 30px) rotate(180deg); }
+    75% { transform: translate(30px, 30px) rotate(270deg); }
+}
+
+@keyframes gradient-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 @keyframes grid-move {
     0% { transform: translate(0, 0); }
     100% { transform: translate(100px, 100px); }
+}
+
+@keyframes grid-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .hero-overlay {
@@ -561,24 +614,72 @@ body::before {
     max-width: 600px;
     height: auto;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
-    animation: illustration-float 6s ease-in-out infinite;
-    transition: filter 0.3s ease;
+    animation: illustration-entrance 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards,
+               illustration-float 6s ease-in-out infinite 2.3s,
+               illustration-glow 4s ease-in-out infinite 2.3s;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateX(100px) scale(0.7) rotateY(45deg);
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .hero-illustration:hover .medical-illustration {
-    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px rgba(59, 130, 246, 0.3));
-    transform: scale(1.05);
+    filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.4)) 
+            drop-shadow(0 0 40px rgba(59, 130, 246, 0.5))
+            drop-shadow(0 0 80px rgba(99, 102, 241, 0.3));
+    transform: scale(1.08) rotateY(0deg) rotateX(5deg);
+    animation-play-state: paused;
+}
+
+@keyframes illustration-entrance {
+    0% {
+        opacity: 0;
+        transform: translateX(100px) scale(0.7) rotateY(45deg);
+        filter: blur(20px) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    }
+    60% {
+        transform: translateX(-10px) scale(1.05) rotateY(-5deg);
+        filter: blur(5px) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) scale(1) rotateY(0deg);
+        filter: blur(0px) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+    }
 }
 
 @keyframes illustration-float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(1deg); }
-    50% { transform: translateY(-5px) rotate(0deg); }
-    75% { transform: translateY(-15px) rotate(-1deg); }
+    0%, 100% { 
+        transform: translateY(0) translateX(0) rotate(0deg) rotateY(0deg); 
+    }
+    25% { 
+        transform: translateY(-15px) translateX(5px) rotate(2deg) rotateY(2deg); 
+    }
+    50% { 
+        transform: translateY(-8px) translateX(0) rotate(0deg) rotateY(0deg); 
+    }
+    75% { 
+        transform: translateY(-20px) translateX(-5px) rotate(-2deg) rotateY(-2deg); 
+    }
+}
+
+@keyframes illustration-glow {
+    0%, 100% {
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 20px rgba(59, 130, 246, 0.2));
+    }
+    50% {
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))
+                drop-shadow(0 0 40px rgba(59, 130, 246, 0.4))
+                drop-shadow(0 0 60px rgba(99, 102, 241, 0.3));
+    }
 }
 
 .pulse-circle {
-    animation: pulse-glow 3s ease-in-out infinite;
+    animation: pulse-glow 3s ease-in-out infinite,
+               pulse-expand 4s ease-in-out infinite;
+    transform-origin: center;
 }
 
 @keyframes pulse-glow {
@@ -587,30 +688,137 @@ body::before {
         transform: scale(1);
     }
     50% {
-        opacity: 0.2;
-        transform: scale(1.05);
+        opacity: 0.3;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pulse-expand {
+    0% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.15;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.1;
+        transform: scale(1);
     }
 }
 
 .hospital-building {
-    animation: float-building 6s ease-in-out infinite;
+    animation: float-building 6s ease-in-out infinite,
+               building-glow 3s ease-in-out infinite;
+    transform-origin: center bottom;
 }
 
 @keyframes float-building {
     0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(-8px) scale(1.02);
     }
     50% {
-        transform: translateY(-10px);
+        transform: translateY(-12px) scale(1.03);
+    }
+    75% {
+        transform: translateY(-8px) scale(1.02);
+    }
+}
+
+@keyframes building-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.5))
+                drop-shadow(0 0 25px rgba(99, 102, 241, 0.3));
     }
 }
 
 .float-1, .float-2, .float-3, .float-4 {
     filter: drop-shadow(0 0 8px currentColor);
+    animation: particle-float 3s ease-in-out infinite,
+               particle-pulse 2s ease-in-out infinite;
+}
+
+.float-1 {
+    animation-delay: 0s, 0s;
+}
+
+.float-2 {
+    animation-delay: 0.5s, 0.3s;
+}
+
+.float-3 {
+    animation-delay: 1s, 0.6s;
+}
+
+.float-4 {
+    animation-delay: 1.5s, 0.9s;
+}
+
+@keyframes particle-float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(10px, -15px) scale(1.2);
+    }
+    50% {
+        transform: translate(-10px, -25px) scale(0.9);
+    }
+    75% {
+        transform: translate(15px, -10px) scale(1.1);
+    }
+}
+
+@keyframes particle-pulse {
+    0%, 100% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 8px currentColor);
+    }
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 20px currentColor)
+                drop-shadow(0 0 30px currentColor);
+    }
 }
 
 .heart-beat {
     filter: drop-shadow(0 0 10px #ef4444);
+    animation: heart-beat-pulse 1.5s ease-in-out infinite,
+               heart-glow 2s ease-in-out infinite;
+}
+
+@keyframes heart-beat-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.15);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    75% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes heart-glow {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px #ef4444)
+                drop-shadow(0 0 20px rgba(239, 68, 68, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px #ef4444)
+                drop-shadow(0 0 40px rgba(239, 68, 68, 0.8))
+                drop-shadow(0 0 60px rgba(239, 68, 68, 0.4));
+    }
 }
 
 .hero-title {
@@ -619,16 +827,111 @@ body::before {
     margin-bottom: 2rem;
     line-height: 1.1;
     letter-spacing: -0.02em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(59, 130, 246, 0.3),
+        0 0 80px rgba(99, 102, 241, 0.2);
+    animation: title-entrance 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+               title-glow 3s ease-in-out infinite 1.2s;
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+    position: relative;
+}
+
+.hero-title::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: title-shine 3s ease-in-out infinite 2s;
+}
+
+@keyframes title-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.8) rotateX(90deg);
+        filter: blur(10px);
+    }
+    60% {
+        transform: translateY(-10px) scale(1.05) rotateX(0deg);
+        filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+@keyframes title-glow {
+    0%, 100% {
+        text-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            0 0 40px rgba(59, 130, 246, 0.3),
+            0 0 80px rgba(99, 102, 241, 0.2);
+    }
+    50% {
+        text-shadow: 
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            0 0 60px rgba(59, 130, 246, 0.5),
+            0 0 120px rgba(99, 102, 241, 0.4),
+            0 0 160px rgba(139, 92, 246, 0.2);
+    }
+}
+
+@keyframes title-shine {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
 }
 
 .hero-subtitle {
     font-size: clamp(1.25rem, 2.5vw, 1.75rem);
     margin-bottom: 3rem;
-    opacity: 0.98;
+    opacity: 0;
     font-weight: 400;
     letter-spacing: 0.01em;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(255, 255, 255, 0.1);
+    animation: subtitle-entrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards,
+               subtitle-fade 4s ease-in-out infinite 1.5s;
+    transform: translateY(30px);
+}
+
+@keyframes subtitle-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) translateX(-20px);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 0.98;
+        transform: translateY(0) translateX(0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes subtitle-fade {
+    0%, 100% {
+        opacity: 0.98;
+        text-shadow: 
+            0 2px 10px rgba(0, 0, 0, 0.2),
+            0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 
+            0 2px 10px rgba(0, 0, 0, 0.2),
+            0 0 30px rgba(255, 255, 255, 0.2),
+            0 0 50px rgba(59, 130, 246, 0.15);
+    }
 }
 
 .hero-cta {
@@ -636,6 +939,35 @@ body::before {
     gap: 1.5rem;
     justify-content: flex-start;
     flex-wrap: wrap;
+    opacity: 0;
+    animation: cta-entrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+    transform: translateY(30px) scale(0.9);
+}
+
+@keyframes cta-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+        filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+.hero-cta .btn {
+    animation: button-bounce 2s ease-in-out infinite 2s;
+}
+
+@keyframes button-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 @media (max-width: 640px) {
@@ -1645,6 +1977,34 @@ textarea:focus:not(:focus-visible) {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
+}
+
+/* Hero 전용 애니메이션 */
+@keyframes letter-pop {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.5) rotateX(90deg);
+        filter: blur(5px);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.1) rotateX(0deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+        filter: blur(0px);
+    }
+}
+
+@keyframes star-twinkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
 }
 
 /* 하위 호환성을 위한 별칭 */
