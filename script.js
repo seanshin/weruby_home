@@ -519,6 +519,248 @@ navLinks.forEach(link => {
 });
 
 // ========================================
+// 능동형 마우스 커서 효과
+// ========================================
+function initCursorGlow() {
+    const cursor = document.createElement('div');
+    cursor.className = 'cursor-glow';
+    document.body.appendChild(cursor);
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    function animateCursor() {
+        cursorX += (mouseX - cursorX) * 0.1;
+        cursorY += (mouseY - cursorY) * 0.1;
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        requestAnimationFrame(animateCursor);
+    }
+    
+    animateCursor();
+    
+    // 호버 시 커서 확대
+    const interactiveElements = document.querySelectorAll('a, button, .solution-card, .vision-card, .alliance-card');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursor.style.opacity = '0.6';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.width = '20px';
+            cursor.style.height = '20px';
+            cursor.style.opacity = '0.4';
+        });
+    });
+}
+
+// ========================================
+// 능동형 파티클 배경 효과
+// ========================================
+function initParticleBackground() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'particle-container';
+    particleContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+    `;
+    hero.appendChild(particleContainer);
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.3});
+            border-radius: 50%;
+            left: ${x}%;
+            top: ${y}%;
+            animation: float-particle ${duration}s ease-in-out infinite;
+            animation-delay: ${delay}s;
+            box-shadow: 0 0 ${size * 2}px rgba(255, 255, 255, 0.5);
+        `;
+        particleContainer.appendChild(particle);
+    }
+}
+
+// 파티클 애니메이션 CSS 추가
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes float-particle {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.3;
+        }
+        25% {
+            transform: translate(30px, -50px) scale(1.2);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translate(-30px, -100px) scale(0.8);
+            opacity: 0.4;
+        }
+        75% {
+            transform: translate(50px, -30px) scale(1.1);
+            opacity: 0.7;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// ========================================
+// 능동형 카드 3D 효과
+// ========================================
+function init3DCards() {
+    const cards = document.querySelectorAll('.vision-card, .solution-card, .alliance-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px) scale(1.03)`;
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = '';
+        });
+    });
+}
+
+// ========================================
+// 능동형 스크롤 파티클 효과
+// ========================================
+function initScrollParticles() {
+    let particles = [];
+    const maxParticles = 50;
+    
+    function createParticle() {
+        if (particles.length >= maxParticles) return;
+        
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.6;
+            box-shadow: 0 0 10px currentColor;
+        `;
+        document.body.appendChild(particle);
+        
+        const startX = Math.random() * window.innerWidth;
+        const startY = window.innerHeight;
+        const endY = -10;
+        const duration = Math.random() * 3000 + 2000;
+        const delay = Math.random() * 1000;
+        
+        particle.style.left = startX + 'px';
+        particle.style.top = startY + 'px';
+        
+        setTimeout(() => {
+            particle.style.transition = `top ${duration}ms linear, opacity ${duration}ms linear`;
+            particle.style.top = endY + 'px';
+            particle.style.opacity = '0';
+            
+            setTimeout(() => {
+                particle.remove();
+                particles = particles.filter(p => p !== particle);
+            }, duration);
+        }, delay);
+        
+        particles.push(particle);
+    }
+    
+    // 스크롤 시 파티클 생성
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+        if (Math.random() > 0.7) {
+            createParticle();
+        }
+    }, { passive: true });
+}
+
+// ========================================
+// 능동형 그라디언트 애니메이션
+// ========================================
+function initGradientAnimation() {
+    const gradientElements = document.querySelectorAll('.hero-background, .technology-section, .cta-section');
+    
+    gradientElements.forEach(el => {
+        let hue = 0;
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            // 그라디언트 색상 미세 조정
+        }, 50);
+    });
+}
+
+// ========================================
+// 능동형 텍스트 글로우 효과
+// ========================================
+function initTextGlow() {
+    const glowElements = document.querySelectorAll('.hero-title, .section-title, .logo-text');
+    
+    glowElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.style.textShadow = '0 0 30px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.3)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            el.style.textShadow = '';
+        });
+    });
+}
+
+// ========================================
+// 초기화
+// ========================================
+window.addEventListener('load', () => {
+    initCursorGlow();
+    initParticleBackground();
+    init3DCards();
+    initScrollParticles();
+    initTextGlow();
+    
+    // 페이지 로드 애니메이션
+    document.body.classList.add('loaded');
+});
+
+// ========================================
 // Console Message
 // ========================================
 console.log('%c위루비 홈페이지에 오신 것을 환영합니다! 🏥', 'color: #2563eb; font-size: 20px; font-weight: bold;');
