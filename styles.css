@@ -445,13 +445,13 @@ body::before {
 /* Hero 섹션 컨테이너 */
 .hero {
     position: relative;
-    height: 100vh;
-    min-height: 700px;
+    min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    padding-top: 80px;
+    padding: 80px 0 120px;
 }
 
 .hero-background {
@@ -603,16 +603,16 @@ body::before {
 
 /* 기술 소개 배지 컨테이너 */
 .hero-tech-badges {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
     z-index: 2;
-    padding: 0 5%;
+    padding: 3rem 5% 0;
+    margin-top: 4rem;
 }
 
 .tech-badge {
@@ -1134,17 +1134,22 @@ body::before {
 }
 
 @media (max-width: 968px) {
+    .hero {
+        padding: 80px 0 100px;
+    }
+
     .hero-tech-badges {
-        flex-direction: column;
+        flex-direction: row;
         gap: 1.5rem;
-        top: auto;
-        bottom: 10%;
-        transform: none;
+        padding: 2rem 5% 0;
+        margin-top: 3rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .tech-badge {
-        flex-direction: row;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 0.8rem;
     }
 
     .tech-badge-icon {
@@ -1170,18 +1175,19 @@ body::before {
         flex-direction: column;
     }
 
+    .hero {
+        padding: 80px 0 80px;
+    }
+
     .hero-tech-badges {
-        position: relative;
-        bottom: auto;
         margin-top: 2rem;
-        padding: 0;
-        flex-direction: row;
-        justify-content: center;
+        padding: 1.5rem 5% 0;
         gap: 1rem;
     }
 
     .tech-badge {
         flex-direction: column;
+        gap: 0.6rem;
     }
 
     .tech-badge-icon {
