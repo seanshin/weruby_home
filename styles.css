@@ -1119,10 +1119,11 @@ textarea:focus:not(:focus-visible) {
 }
 
 .btn-secondary:hover {
-    background: var(--white);
-    color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.3);
+    color: #0f172a;
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 16px 40px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 16px 40px rgba(30, 41, 59, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
+    border-color: rgba(30, 41, 59, 0.5);
 }
 
 .btn-secondary span {
