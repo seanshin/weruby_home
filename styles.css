@@ -8,45 +8,95 @@
 }
 
 :root {
-    --primary-color: #1e40af;
-    --primary-light: #3b82f6;
-    --secondary-color: #059669;
-    --secondary-light: #10b981;
-    --accent-color: #7c3aed;
-    --accent-light: #a78bfa;
-    --dark-color: #0f172a;
-    --dark-secondary: #1e293b;
-    --light-color: #f1f5f9;
-    --light-secondary: #e2e8f0;
-    --gray-color: #475569;
-    --gray-light: #94a3b8;
-    --white: #ffffff;
-    --gradient-1: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-    --gradient-2: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #10b981 100%);
-    --gradient-3: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #ec4899 100%);
-    --gradient-hero: linear-gradient(135deg, #6366f1 0%, #8b5cf6 30%, #ec4899 60%, #3b82f6 100%);
-    --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 16px 32px -8px rgba(0, 0, 0, 0.2);
-    --shadow-xl: 0 24px 48px -12px rgba(0, 0, 0, 0.25);
-    --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.3);
-    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 색상 변수 - 명확한 의미를 가진 이름으로 변경 */
+    --color-primary: #1e40af;              /* 메인 파란색 */
+    --color-primary-light: #3b82f6;       /* 밝은 파란색 */
+    --color-secondary: #059669;           /* 메인 초록색 */
+    --color-secondary-light: #10b981;     /* 밝은 초록색 */
+    --color-accent: #7c3aed;              /* 강조 보라색 */
+    --color-accent-light: #a78bfa;        /* 밝은 보라색 */
+    --color-dark: #0f172a;                /* 어두운 배경색 */
+    --color-dark-secondary: #1e293b;      /* 보조 어두운 배경색 */
+    --color-light: #f1f5f9;               /* 밝은 배경색 */
+    --color-light-secondary: #e2e8f0;     /* 보조 밝은 배경색 */
+    --color-gray: #475569;                /* 회색 텍스트 */
+    --color-gray-light: #94a3b8;          /* 밝은 회색 */
+    --color-white: #ffffff;               /* 흰색 */
+    --color-error: #ef4444;               /* 에러 빨간색 */
+    --color-success: #10b981;             /* 성공 초록색 */
+    
+    /* 그라디언트 변수 - 용도별로 명확하게 구분 */
+    --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+    --gradient-brand: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #10b981 100%);
+    --gradient-accent: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #ec4899 100%);
+    --gradient-hero-background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 30%, #ec4899 60%, #3b82f6 100%);
+    
+    /* 그림자 변수 - 크기별로 명확하게 구분 */
+    --shadow-small: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 16px -4px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 16px 32px -8px rgba(0, 0, 0, 0.2);
+    --shadow-extra-large: 0 24px 48px -12px rgba(0, 0, 0, 0.25);
+    --shadow-glow-effect: 0 0 30px rgba(59, 130, 246, 0.3);
+    
+    /* 전환 효과 변수 */
+    --transition-default: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    --border-radius: 24px;
-    --border-radius-sm: 16px;
-    --border-radius-lg: 32px;
+    
+    /* 테두리 반경 변수 */
+    --radius-default: 24px;
+    --radius-small: 16px;
+    --radius-large: 32px;
+    --radius-round: 50px;
+    
+    /* 하위 호환성을 위한 별칭 (기존 변수명 유지) */
+    --primary-color: var(--color-primary);
+    --primary-light: var(--color-primary-light);
+    --secondary-color: var(--color-secondary);
+    --secondary-light: var(--color-secondary-light);
+    --accent-color: var(--color-accent);
+    --accent-light: var(--color-accent-light);
+    --dark-color: var(--color-dark);
+    --dark-secondary: var(--color-dark-secondary);
+    --light-color: var(--color-light);
+    --light-secondary: var(--color-light-secondary);
+    --gray-color: var(--color-gray);
+    --gray-light: var(--color-gray-light);
+    --white: var(--color-white);
+    --gradient-1: var(--gradient-primary);
+    --gradient-2: var(--gradient-brand);
+    --gradient-3: var(--gradient-accent);
+    --gradient-hero: var(--gradient-hero-background);
+    --shadow-sm: var(--shadow-small);
+    --shadow-md: var(--shadow-medium);
+    --shadow-lg: var(--shadow-large);
+    --shadow-xl: var(--shadow-extra-large);
+    --shadow-glow: var(--shadow-glow-effect);
+    --transition-base: var(--transition-default);
+    --border-radius: var(--radius-default);
+    --border-radius-sm: var(--radius-small);
+    --border-radius-lg: var(--radius-large);
 }
 
-/* Dark Mode Variables */
+/* 다크모드 색상 변수 - 명확한 의미를 가진 이름으로 변경 */
 [data-theme="dark"] {
-    --dark-color: #f8fafc;
-    --light-color: #1e293b;
-    --white: #0f172a;
-    --gray-color: #94a3b8;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    --color-dark: #f8fafc;
+    --color-light: #1e293b;
+    --color-white: #0f172a;
+    --color-gray: #94a3b8;
+    --shadow-small: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    --shadow-large: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-extra-large: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    
+    /* 하위 호환성을 위한 별칭 */
+    --dark-color: var(--color-dark);
+    --light-color: var(--color-light);
+    --white: var(--color-white);
+    --gray-color: var(--color-gray);
+    --shadow-sm: var(--shadow-small);
+    --shadow-md: var(--shadow-medium);
+    --shadow-lg: var(--shadow-large);
+    --shadow-xl: var(--shadow-extra-large);
 }
 
 [data-theme="dark"] .navbar {
@@ -161,8 +211,10 @@ body::before {
 }
 
 /* ========================================
-   Navigation
+   네비게이션 바 스타일
    ======================================== */
+
+/* 네비게이션 바 컨테이너 */
 .navbar {
     position: fixed;
     top: 0;
@@ -175,15 +227,22 @@ body::before {
     padding: 1.25rem 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: var(--transition-base);
+    transition: var(--transition-default);
 }
 
-.navbar.scrolled {
+/* 스크롤 시 네비게이션 바 스타일 */
+.navbar.is-scrolled {
     padding: 0.75rem 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
     background: rgba(255, 255, 255, 0.99);
 }
 
+/* 하위 호환성을 위한 별칭 */
+.navbar.scrolled {
+    composes: is-scrolled;
+}
+
+/* 네비게이션 컨테이너 */
 .nav-container {
     max-width: 1400px;
     margin: 0 auto;
@@ -366,8 +425,10 @@ body::before {
 }
 
 /* ========================================
-   Hero Section
+   Hero 섹션 스타일
    ======================================== */
+
+/* Hero 섹션 컨테이너 */
 .hero {
     position: relative;
     height: 100vh;
@@ -740,17 +801,20 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Section Styles
+   섹션 공통 스타일
    ======================================== */
+
+/* 섹션 헤더 컨테이너 */
 .section-header {
     text-align: center;
     margin-bottom: 5rem;
     padding: 0 2rem;
 }
 
+/* 섹션 라벨 (예: "Our Solutions", "Technology") */
 .section-label {
     display: inline-block;
-    color: var(--primary-color);
+    color: var(--color-primary);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -758,30 +822,34 @@ textarea:focus:not(:focus-visible) {
     margin-bottom: 1.5rem;
     padding: 0.5rem 1.5rem;
     background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-    border-radius: 50px;
+    border-radius: var(--radius-round);
     border: 1px solid rgba(30, 64, 175, 0.2);
 }
 
+/* 섹션 메인 제목 */
 .section-title {
     font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 800;
     margin-bottom: 1.5rem;
-    color: var(--dark-color);
+    color: var(--color-dark);
     letter-spacing: -0.02em;
     line-height: 1.2;
 }
 
+/* 섹션 설명 텍스트 */
 .section-description {
     font-size: 1.25rem;
-    color: var(--gray-color);
+    color: var(--color-gray);
     line-height: 1.9;
     max-width: 800px;
     margin: 0 auto;
 }
 
 /* ========================================
-   Vision Section
+   Vision 섹션 스타일
    ======================================== */
+
+/* Vision 섹션 컨테이너 */
 .vision-section {
     padding: 8rem 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%);
@@ -789,6 +857,7 @@ textarea:focus:not(:focus-visible) {
     overflow: hidden;
 }
 
+/* Vision 섹션 상단 구분선 */
 .vision-section::before {
     content: '';
     position: absolute;
@@ -796,20 +865,22 @@ textarea:focus:not(:focus-visible) {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
 }
 
+/* Vision 카드 그리드 레이아웃 */
 .vision-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2.5rem;
 }
 
+/* Vision 카드 스타일 */
 .vision-card {
-    background: var(--white);
+    background: var(--color-white);
     padding: 3.5rem 2.5rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
+    border-radius: var(--radius-default);
+    box-shadow: var(--shadow-medium);
     transition: var(--transition-smooth);
     text-align: center;
     position: relative;
@@ -906,14 +977,17 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Solutions Section
+   Solutions 섹션 스타일
    ======================================== */
+
+/* Solutions 섹션 컨테이너 */
 .solutions-section {
     padding: 8rem 0;
     background: linear-gradient(180deg, #f1f5f9 0%, #ffffff 50%, #f8fafc 100%);
     position: relative;
 }
 
+/* Solutions 섹션 하단 구분선 */
 .solutions-section::after {
     content: '';
     position: absolute;
@@ -921,9 +995,10 @@ textarea:focus:not(:focus-visible) {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+    background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
 }
 
+/* Solutions 카드 그리드 레이아웃 */
 .solutions-grid {
     display: grid;
     gap: 2.5rem;
@@ -1094,12 +1169,14 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Technology Section
+   Technology 섹션 스타일
    ======================================== */
+
+/* Technology 섹션 컨테이너 */
 .technology-section {
     padding: 8rem 0;
-    background: var(--gradient-hero);
-    color: var(--white);
+    background: var(--gradient-hero-background);
+    color: var(--color-white);
     position: relative;
     overflow: hidden;
 }
@@ -1237,8 +1314,10 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Alliance Section
+   Alliance 섹션 스타일
    ======================================== */
+
+/* Alliance 섹션 컨테이너 */
 .alliance-section {
     padding: 8rem 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -1349,12 +1428,14 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   CTA Section
+   CTA (Call to Action) 섹션 스타일
    ======================================== */
+
+/* CTA 섹션 컨테이너 */
 .cta-section {
     padding: 8rem 0;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    color: var(--white);
+    color: var(--color-white);
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1400,8 +1481,10 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Contact Section
+   Contact 섹션 스타일
    ======================================== */
+
+/* Contact 섹션 컨테이너 */
 .contact-section {
     padding: 8rem 0;
     background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
@@ -1531,12 +1614,25 @@ textarea:focus:not(:focus-visible) {
     transition: var(--transition-base);
 }
 
-.form-group input.error,
-.form-group textarea.error {
-    border-color: #ef4444;
-    animation: shake 0.3s ease;
+.form-group input.has-error,
+.form-group textarea.has-error {
+    border-color: var(--color-error);
+    animation: input-shake-animation 0.3s ease;
 }
 
+/* 하위 호환성을 위한 별칭 */
+.form-group input.error,
+.form-group textarea.error {
+    composes: has-error;
+}
+
+@keyframes input-shake-animation {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 하위 호환성을 위한 별칭 */
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-5px); }
@@ -1563,52 +1659,81 @@ textarea:focus:not(:focus-visible) {
     border-color: var(--secondary-color);
 }
 
-.error-message {
+/* 폼 에러 메시지 스타일 */
+.form-error-message {
     display: block;
-    color: #ef4444;
+    color: var(--color-error);
     font-size: 0.875rem;
     margin-top: 0.5rem;
     min-height: 1.25rem;
 }
 
-.form-status {
+/* 폼 상태 메시지 스타일 */
+.form-status-message {
     margin-bottom: 1rem;
     padding: 1rem;
-    border-radius: 10px;
+    border-radius: var(--radius-small);
     text-align: center;
     font-weight: 500;
     display: none;
 }
 
-.form-status.success {
+.form-status-message.success {
     display: block;
     background: #d1fae5;
     color: #065f46;
 }
 
-.form-status.error {
+.form-status-message.error {
     display: block;
     background: #fee2e2;
     color: #991b1b;
 }
 
-.btn-loader {
+/* 하위 호환성을 위한 별칭 */
+.error-message {
+    composes: form-error-message;
+}
+
+.form-status {
+    composes: form-status-message;
+}
+
+/* 버튼 로딩 스피너 스타일 */
+.button-loading-spinner {
     display: none;
     width: 20px;
     height: 20px;
     border: 3px solid rgba(255, 255, 255, 0.3);
-    border-top-color: var(--white);
+    border-top-color: var(--color-white);
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
+    animation: spinner-rotation 0.8s linear infinite;
     margin-left: 10px;
 }
 
-.btn.loading .btn-text {
+.button.is-loading .button-text {
     opacity: 0.7;
 }
 
-.btn.loading .btn-loader {
+.button.is-loading .button-loading-spinner {
     display: inline-block;
+}
+
+@keyframes spinner-rotation {
+    to { transform: rotate(360deg); }
+}
+
+/* 하위 호환성을 위한 별칭 */
+.btn-loader {
+    composes: button-loading-spinner;
+}
+
+.btn.loading .btn-text {
+    composes: button-text;
+}
+
+.btn.loading .btn-loader {
+    composes: button-loading-spinner;
 }
 
 @keyframes spin {
@@ -1616,11 +1741,13 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Footer
+   Footer 스타일
    ======================================== */
+
+/* Footer 컨테이너 */
 .footer {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    color: var(--white);
+    color: var(--color-white);
     padding: 4rem 0 2rem;
     position: relative;
     overflow: hidden;
@@ -1698,9 +1825,11 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* ========================================
-   Animations
+   애니메이션 효과
    ======================================== */
-@keyframes fadeIn {
+
+/* 페이드인 애니메이션 */
+@keyframes fade-in-animation {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -1711,16 +1840,29 @@ textarea:focus:not(:focus-visible) {
     }
 }
 
+/* 페이드인 애니메이션 클래스 */
 .animate-fade-in {
-    animation: fadeIn 1s ease-out;
+    animation: fade-in-animation 1s ease-out;
 }
 
 .animate-fade-in-delay {
-    animation: fadeIn 1s ease-out 0.3s both;
+    animation: fade-in-animation 1s ease-out 0.3s both;
 }
 
 .animate-fade-in-delay-2 {
-    animation: fadeIn 1s ease-out 0.6s both;
+    animation: fade-in-animation 1s ease-out 0.6s both;
+}
+
+/* 하위 호환성을 위한 별칭 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* ========================================
