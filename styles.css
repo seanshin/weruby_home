@@ -580,6 +580,14 @@ body::before {
     display: inline-block;
     border: none;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
 }
 
 .btn-primary {
