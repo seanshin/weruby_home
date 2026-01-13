@@ -36,7 +36,10 @@ const CONFIG = {
     CURSOR_SIZE_NORMAL: 20,
     CURSOR_SIZE_HOVER: 40,
     CURSOR_OPACITY_NORMAL: 0.4,
-    CURSOR_OPACITY_HOVER: 0.6
+    CURSOR_OPACITY_HOVER: 0.6,
+    
+    // 개발 모드 설정
+    IS_DEVELOPMENT: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
 };
 
 // 이메일 검증 정규식
@@ -50,15 +53,46 @@ const DarkModeManager = {
      * 저장된 테마 설정을 불러와서 적용
      */
     initialize() {
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        this.applyTheme(savedTheme);
+        try {
+            const savedTheme = this.getStoredTheme() || 'light';
+            this.applyTheme(savedTheme);
+        } catch (error) {
+            // localStorage 접근 실패 시 기본 테마 사용
+            console.warn('테마 설정을 불러올 수 없습니다:', error);
+            this.applyTheme('light');
+        }
+    },
+
+    /**
+     * localStorage에서 테마를 안전하게 가져옵니다
+     * @returns {string|null} 저장된 테마 또는 null
+     */
+    getStoredTheme() {
+        try {
+            return localStorage.getItem('theme');
+        } catch (error) {
+            console.warn('localStorage 접근 실패:', error);
+            return null;
+        }
+    },
+
+    /**
+     * 테마를 localStorage에 안전하게 저장합니다
+     * @param {string} theme - 저장할 테마
+     */
+    setStoredTheme(theme) {
+        try {
+            localStorage.setItem('theme', theme);
+        } catch (error) {
+            console.warn('테마 설정을 저장할 수 없습니다:', error);
+        }
     },
 
     /**
      * 테마를 전환합니다
      */
     toggle() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         this.applyTheme(newTheme);
     },
@@ -68,8 +102,12 @@ const DarkModeManager = {
      * @param {string} theme - 'light' 또는 'dark'
      */
     applyTheme(theme) {
+        if (theme !== 'light' && theme !== 'dark') {
+            theme = 'light'; // 유효하지 않은 값은 기본값으로
+        }
+        
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+        this.setStoredTheme(theme);
         this.updateThemeIcon(theme);
     },
 
@@ -123,6 +161,7 @@ const NavigationManager = {
         this.setupSmoothScrolling();
         this.setupActiveLinkTracking();
         this.setupKeyboardNavigation();
+        this.setupKeyboardShortcuts();
     },
 
     /**
@@ -250,6 +289,33 @@ const NavigationManager = {
             if (event.key === 'Escape' && this.navigationMenu?.classList.contains('active')) {
                 this.closeMenu();
                 this.hamburgerButton?.focus();
+            }
+        });
+    },
+
+    /**
+     * 키보드 단축키를 설정합니다
+     */
+    setupKeyboardShortcuts() {
+        document.addEventListener('keydown', (event) => {
+            // Alt + H: 홈으로 이동
+            if (event.altKey && event.key === 'h') {
+                event.preventDefault();
+                const homeLink = document.querySelector('a[href="#home"]');
+                if (homeLink) {
+                    homeLink.click();
+                    homeLink.focus();
+                }
+            }
+            
+            // Alt + S: Solutions로 이동
+            if (event.altKey && event.key === 's') {
+                event.preventDefault();
+                const solutionsLink = document.querySelector('a[href="solutions.html"]');
+                if (solutionsLink) {
+                    solutionsLink.click();
+                    solutionsLink.focus();
+                }
             }
         });
     }
@@ -432,28 +498,44 @@ const FormManager = {
             
             if (!this.validateEntireForm()) {
                 this.showFormStatusMessage('입력 정보를 확인해주세요.', 'error');
+                // 첫 번째 에러 필드로 포커스 이동
+                const firstErrorInput = this.contactForm.querySelector('input[aria-invalid="true"], textarea[aria-invalid="true"]');
+                if (firstErrorInput) {
+                    firstErrorInput.focus();
+                }
                 return;
             }
             
             const submitButton = document.getElementById('submitBtn');
+            if (!submitButton) return;
+            
             const buttonText = submitButton.querySelector('.btn-text');
             const buttonLoader = submitButton.querySelector('.btn-loader');
             
             // 로딩 상태 표시
             submitButton.classList.add('loading');
             submitButton.disabled = true;
+            submitButton.setAttribute('aria-busy', 'true');
             
             // 폼 데이터 수집
             const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                company: document.getElementById('company').value.trim(),
-                message: document.getElementById('message').value.trim()
+                name: document.getElementById('name')?.value.trim() || '',
+                email: document.getElementById('email')?.value.trim() || '',
+                company: document.getElementById('company')?.value.trim() || '',
+                message: document.getElementById('message')?.value.trim() || ''
             };
             
             try {
                 // 실제 API 호출로 대체 필요
-                // 예: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) });
+                // 예: 
+                // const response = await fetch('/api/contact', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // });
+                // if (!response.ok) throw new Error('Network response was not ok');
+                
+                // 시뮬레이션: 네트워크 지연
                 await new Promise(resolve => setTimeout(resolve, 1500));
                 
                 this.showFormStatusMessage(
@@ -467,8 +549,16 @@ const FormManager = {
                     this.clearInputError(inputId);
                 });
                 
+                // 성공 후 첫 번째 입력 필드로 포커스 이동
+                const firstInput = this.contactForm.querySelector('input, textarea');
+                if (firstInput) {
+                    setTimeout(() => firstInput.focus(), 100);
+                }
+                
             } catch (error) {
-                console.error('폼 제출 오류:', error);
+                if (CONFIG.IS_DEVELOPMENT) {
+                    console.error('폼 제출 오류:', error);
+                }
                 this.showFormStatusMessage(
                     '전송 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', 
                     'error'
@@ -477,6 +567,7 @@ const FormManager = {
                 // 로딩 상태 제거
                 submitButton.classList.remove('loading');
                 submitButton.disabled = false;
+                submitButton.removeAttribute('aria-busy');
             }
         });
     }
@@ -543,10 +634,22 @@ const ScrollAnimationManager = {
 const InteractiveEffectsManager = {
     /**
      * 마우스 커서 글로우 효과를 초기화합니다
+     * 성능 최적화: 터치 디바이스에서는 비활성화
      */
     initializeCursorGlow() {
+        // 터치 디바이스에서는 커서 효과 비활성화
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            return;
+        }
+        
+        // 사용자가 애니메이션 감소를 선호하는 경우 비활성화
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        
         const cursorElement = document.createElement('div');
         cursorElement.className = 'cursor-glow';
+        cursorElement.setAttribute('aria-hidden', 'true');
         document.body.appendChild(cursorElement);
         
         let mousePositionX = 0;
@@ -593,13 +696,20 @@ const InteractiveEffectsManager = {
 
     /**
      * Hero 섹션 파티클 배경 효과를 초기화합니다
+     * 성능 최적화: prefers-reduced-motion을 고려
      */
     initializeParticleBackground() {
+        // 사용자가 애니메이션 감소를 선호하는 경우 파티클 효과 비활성화
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        
         const heroSection = document.querySelector('.hero');
         if (!heroSection) return;
         
         const particleContainer = document.createElement('div');
         particleContainer.className = 'particle-container';
+        particleContainer.setAttribute('aria-hidden', 'true');
         particleContainer.style.cssText = `
             position: absolute;
             top: 0;
@@ -675,14 +785,21 @@ const InteractiveEffectsManager = {
 
     /**
      * 스크롤 기반 파티클 효과를 초기화합니다
+     * 성능 최적화: prefers-reduced-motion을 고려하여 애니메이션 감소 선호 시 비활성화
      */
     initializeScrollParticles() {
+        // 사용자가 애니메이션 감소를 선호하는 경우 파티클 효과 비활성화
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+        
         let activeParticles = [];
         
         const createScrollParticle = () => {
             if (activeParticles.length >= CONFIG.MAX_SCROLL_PARTICLES) return;
             
             const particle = document.createElement('div');
+            particle.setAttribute('aria-hidden', 'true');
             particle.style.cssText = `
                 position: fixed;
                 width: 4px;
@@ -711,7 +828,9 @@ const InteractiveEffectsManager = {
                 particle.style.opacity = '0';
                 
                 setTimeout(() => {
-                    particle.remove();
+                    if (particle.parentNode) {
+                        particle.remove();
+                    }
                     activeParticles = activeParticles.filter(p => p !== particle);
                 }, animationDuration);
             }, animationDelay);
@@ -719,12 +838,14 @@ const InteractiveEffectsManager = {
             activeParticles.push(particle);
         };
         
-        // 스크롤 시 파티클 생성
-        window.addEventListener('scroll', () => {
+        // 스크롤 시 파티클 생성 (스로틀링 적용)
+        const throttledCreateParticle = UtilityFunctions.throttle(() => {
             if (Math.random() > (1 - CONFIG.PARTICLE_CREATION_PROBABILITY)) {
                 createScrollParticle();
             }
-        }, { passive: true });
+        }, 100);
+        
+        window.addEventListener('scroll', throttledCreateParticle, { passive: true });
     },
 
     /**
@@ -881,9 +1002,11 @@ window.addEventListener('load', () => {
 });
 
 // ========================================
-// 콘솔 메시지
+// 콘솔 메시지 (개발 모드에서만 표시)
 // ========================================
-console.log('%c위루비 홈페이지에 오신 것을 환영합니다! 🏥', 
-    'color: #2563eb; font-size: 20px; font-weight: bold;');
-console.log('%c미래의 스마트 병원을 함께 만들어갑니다.', 
-    'color: #10b981; font-size: 14px;');
+if (CONFIG.IS_DEVELOPMENT) {
+    console.log('%c위루비 홈페이지에 오신 것을 환영합니다! 🏥', 
+        'color: #2563eb; font-size: 20px; font-weight: bold;');
+    console.log('%c미래의 스마트 병원을 함께 만들어갑니다.', 
+        'color: #10b981; font-size: 14px;');
+}
