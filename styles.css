@@ -613,7 +613,6 @@ body::before {
     align-items: center;
     z-index: 2;
     padding: 0 5%;
-    pointer-events: none;
 }
 
 .tech-badge {
@@ -625,6 +624,8 @@ body::before {
     animation: tech-badge-entrance 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
                tech-badge-float 4s ease-in-out infinite;
     transform: translateY(30px) scale(0.8);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .tech-badge-1 {
