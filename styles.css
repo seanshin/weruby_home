@@ -239,7 +239,9 @@ body::before {
 
 /* 하위 호환성을 위한 별칭 */
 .navbar.scrolled {
-    composes: is-scrolled;
+    padding: 0.75rem 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.99);
 }
 
 /* 네비게이션 컨테이너 */
@@ -1623,7 +1625,8 @@ textarea:focus:not(:focus-visible) {
 /* 하위 호환성을 위한 별칭 */
 .form-group input.error,
 .form-group textarea.error {
-    composes: has-error;
+    border-color: var(--color-error);
+    animation: input-shake-animation 0.3s ease;
 }
 
 @keyframes input-shake-animation {
@@ -1692,11 +1695,32 @@ textarea:focus:not(:focus-visible) {
 
 /* 하위 호환성을 위한 별칭 */
 .error-message {
-    composes: form-error-message;
+    display: block;
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    min-height: 1.25rem;
 }
 
 .form-status {
-    composes: form-status-message;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-small);
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.form-status.success {
+    display: block;
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.form-status.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 /* 버튼 로딩 스피너 스타일 */
@@ -1725,15 +1749,22 @@ textarea:focus:not(:focus-visible) {
 
 /* 하위 호환성을 위한 별칭 */
 .btn-loader {
-    composes: button-loading-spinner;
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--color-white);
+    border-radius: 50%;
+    animation: spinner-rotation 0.8s linear infinite;
+    margin-left: 10px;
 }
 
 .btn.loading .btn-text {
-    composes: button-text;
+    opacity: 0.7;
 }
 
 .btn.loading .btn-loader {
-    composes: button-loading-spinner;
+    display: inline-block;
 }
 
 @keyframes spin {
