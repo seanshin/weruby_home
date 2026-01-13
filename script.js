@@ -1010,16 +1010,26 @@ const HeroAnimationManager = {
         const heroTitle = document.querySelector('.hero-title');
         if (!heroTitle) return;
 
-        const text = heroTitle.textContent;
-        const words = text.split('<br>');
+        // 원본 HTML 구조 유지 (br 태그 포함)
+        const originalHTML = heroTitle.innerHTML;
+        const lines = originalHTML.split('<br>');
         
-        heroTitle.innerHTML = words.map((word, wordIndex) => {
-            return word.split('').map((char, charIndex) => {
+        const animatedHTML = lines.map((line, lineIndex) => {
+            // HTML 태그 제거하고 텍스트만 추출
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = line;
+            const text = tempDiv.textContent || tempDiv.innerText || '';
+            
+            const animatedLine = text.split('').map((char, charIndex) => {
                 if (char === ' ') return ' ';
-                const delay = (wordIndex * 0.1) + (charIndex * 0.05);
+                const delay = (lineIndex * 0.15) + (charIndex * 0.03);
                 return `<span class="letter" style="display: inline-block; animation: letter-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s both;">${char}</span>`;
             }).join('');
-        }).join('<br>');
+            
+            return lineIndex < lines.length - 1 ? animatedLine + '<br>' : animatedLine;
+        }).join('');
+        
+        heroTitle.innerHTML = animatedHTML;
     },
 
     /**
